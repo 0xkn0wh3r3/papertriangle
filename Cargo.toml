@@ -1,0 +1,26 @@
+[package]
+name = "papertriangle"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.82"
+description = "Mock/observation server that mirrors the documented ROS-style network surface from docs/spec/network_calls.md. Research/interoperability scaffold only — NOT a functioning game backend, with no real crypto and no live hosts."
+license = "MIT"
+publish = false
+
+[dependencies]
+anyhow = "1"
+axum = { version = "0.8", features = ["ws", "multipart", "macros"] }
+base64 = "0.22"
+clap = { version = "4", features = ["derive", "env"] }
+rand = "0.8"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "2"
+tokio = { version = "1", features = ["full"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+uuid = { version = "1", features = ["v4", "serde"] }
+
+[[bin]]
+name = "papertriangle"
+path = "src/main.rs"
