@@ -75,6 +75,22 @@ jq 'select(.service=="telemetry")' capture.jsonl
 grep '"source": "capture-summary"' capture.jsonl | jq
 ```
 
+## Generate a report
+
+Turn a capture into a Markdown data-collection report (offline, stdlib-only):
+
+```bash
+python proxy/report.py capture.jsonl            # to stdout
+python proxy/report.py capture.jsonl -o report.md
+```
+
+It summarizes: where data goes (by host), what is called (by endpoint), the data
+categories observed (§7.6), which identifiers the observed channels are
+documented to carry (§6), a functional-vs-analytics heuristic split, payload
+opacity (how much is readable), and which documented security headers appeared.
+Identifier rows describe what each channel *carries* per the spec, not values
+read out of (often opaque) payloads.
+
 ## Limits (state these in any writeup)
 
 - **Opaque payloads.** ROS hashes + signs bodies and HMACs headers; the exact
